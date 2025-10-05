@@ -1,0 +1,19 @@
+@startuml High_Level_Diagram
+!theme mono
+
+actor User
+component "CLI" as CLI
+component "Linter Core Engine" as Core
+component "Rule Processor" as Processor
+component "Reporter" as Reporter
+file "Rule Config File" as Config
+
+User --> CLI : initiates
+CLI --> Core : starts analysis
+Core --> Processor : delegates linting
+Processor .> Config : reads rules
+
+Core --> Reporter : provides results
+Reporter --> User : displays report
+
+@enduml
